@@ -1,0 +1,342 @@
+import { EventItem, EventTheme } from '../types';
+
+export const EVENT_THEMES: Record<string, EventTheme> = {
+  naruto: {
+    primary: '#ff6600',
+    secondary: '#1a1005',
+    accent: '#ffa31a',
+    gradient: 'from-orange-600 via-amber-700 to-zinc-950',
+    glow: 'rgba(255, 102, 0, 0.4)',
+    border: 'border-orange-500/40',
+    badgeBg: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
+    iconBg: 'bg-orange-500/20 text-orange-400',
+    symbol: '🌀',
+  },
+  gojo: {
+    primary: '#00d2ff',
+    secondary: '#07162c',
+    accent: '#80e5ff',
+    gradient: 'from-cyan-500 via-blue-900 to-zinc-950',
+    glow: 'rgba(0, 210, 255, 0.4)',
+    border: 'border-cyan-400/40',
+    badgeBg: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
+    iconBg: 'bg-cyan-500/20 text-cyan-400',
+    symbol: '👁️',
+  },
+  anime: {
+    primary: '#ff2e93',
+    secondary: '#1f001c',
+    accent: '#ff77c6',
+    gradient: 'from-pink-600 via-purple-900 to-zinc-950',
+    glow: 'rgba(255, 46, 147, 0.4)',
+    border: 'border-pink-500/40',
+    badgeBg: 'bg-pink-500/20 text-pink-300 border-pink-500/40',
+    iconBg: 'bg-pink-500/20 text-pink-400',
+    symbol: '✨',
+  },
+  ghost: {
+    primary: '#a855f7',
+    secondary: '#150824',
+    accent: '#c084fc',
+    gradient: 'from-purple-700 via-indigo-950 to-zinc-950',
+    glow: 'rgba(168, 85, 247, 0.4)',
+    border: 'border-purple-500/40',
+    badgeBg: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+    iconBg: 'bg-purple-500/20 text-purple-400',
+    symbol: '👻',
+  },
+  fire: {
+    primary: '#ef4444',
+    secondary: '#200707',
+    accent: '#f97316',
+    gradient: 'from-red-600 via-orange-900 to-zinc-950',
+    glow: 'rgba(239, 68, 68, 0.4)',
+    border: 'border-red-500/40',
+    badgeBg: 'bg-red-500/20 text-red-300 border-red-500/40',
+    iconBg: 'bg-red-500/20 text-red-400',
+    symbol: '🔥',
+  },
+  froze: {
+    primary: '#38bdf8',
+    secondary: '#071829',
+    accent: '#bae6fd',
+    gradient: 'from-sky-500 via-blue-950 to-zinc-950',
+    glow: 'rgba(56, 189, 248, 0.4)',
+    border: 'border-sky-400/40',
+    badgeBg: 'bg-sky-500/20 text-sky-300 border-sky-400/40',
+    iconBg: 'bg-sky-500/20 text-sky-400',
+    symbol: '❄️',
+  },
+  proxy: {
+    primary: '#10b981',
+    secondary: '#031a11',
+    accent: '#34d399',
+    gradient: 'from-emerald-600 via-teal-950 to-zinc-950',
+    glow: 'rgba(16, 185, 129, 0.4)',
+    border: 'border-emerald-500/40',
+    badgeBg: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+    iconBg: 'bg-emerald-500/20 text-emerald-400',
+    symbol: '⚡',
+  },
+  premium: {
+    primary: '#eab308',
+    secondary: '#1c1602',
+    accent: '#fde047',
+    gradient: 'from-amber-500 via-yellow-950 to-zinc-950',
+    glow: 'rgba(234, 179, 8, 0.4)',
+    border: 'border-amber-400/40',
+    badgeBg: 'bg-amber-500/20 text-amber-300 border-amber-400/40',
+    iconBg: 'bg-amber-500/20 text-amber-400',
+    symbol: '👑',
+  },
+  lightning: {
+    primary: '#06b6d4',
+    secondary: '#081e26',
+    accent: '#67e8f9',
+    gradient: 'from-cyan-500 via-sky-950 to-zinc-950',
+    glow: 'rgba(6, 182, 212, 0.4)',
+    border: 'border-cyan-400/40',
+    badgeBg: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
+    iconBg: 'bg-cyan-500/20 text-cyan-400',
+    symbol: '⚡',
+  },
+  thunder: {
+    primary: '#8b5cf6',
+    secondary: '#180e2b',
+    accent: '#a78bfa',
+    gradient: 'from-violet-600 via-purple-950 to-zinc-950',
+    glow: 'rgba(139, 92, 246, 0.4)',
+    border: 'border-violet-500/40',
+    badgeBg: 'bg-violet-500/20 text-violet-300 border-violet-500/40',
+    iconBg: 'bg-violet-500/20 text-violet-400',
+    symbol: '🌩️',
+  },
+  tamil: {
+    primary: '#f59e0b',
+    secondary: '#231201',
+    accent: '#fbbf24',
+    gradient: 'from-amber-600 via-red-950 to-zinc-950',
+    glow: 'rgba(245, 158, 11, 0.4)',
+    border: 'border-amber-500/40',
+    badgeBg: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+    iconBg: 'bg-amber-500/20 text-amber-400',
+    symbol: '🎬',
+  },
+  dnsnAnniversary: {
+    primary: '#ec4899',
+    secondary: '#240616',
+    accent: '#f472b6',
+    gradient: 'from-pink-500 via-purple-900 to-indigo-950',
+    glow: 'rgba(236, 72, 153, 0.4)',
+    border: 'border-pink-400/40',
+    badgeBg: 'bg-pink-500/20 text-pink-300 border-pink-400/40',
+    iconBg: 'bg-pink-500/20 text-pink-400',
+    symbol: '🎉',
+  },
+  king: {
+    primary: '#9333ea',
+    secondary: '#1d082c',
+    accent: '#fbbf24',
+    gradient: 'from-purple-700 via-yellow-900 to-zinc-950',
+    glow: 'rgba(147, 51, 234, 0.4)',
+    border: 'border-purple-500/40',
+    badgeBg: 'bg-purple-500/20 text-yellow-300 border-yellow-500/40',
+    iconBg: 'bg-purple-500/20 text-yellow-400',
+    symbol: '⚜️',
+  },
+  prompt: {
+    primary: '#14b8a6',
+    secondary: '#051d1a',
+    accent: '#2dd4bf',
+    gradient: 'from-teal-500 via-emerald-950 to-zinc-950',
+    glow: 'rgba(20, 184, 166, 0.4)',
+    border: 'border-teal-500/40',
+    badgeBg: 'bg-teal-500/20 text-teal-300 border-teal-500/40',
+    iconBg: 'bg-teal-500/20 text-teal-400',
+    symbol: '🤖',
+  },
+  kling: {
+    primary: '#f97316',
+    secondary: '#251004',
+    accent: '#fb923c',
+    gradient: 'from-orange-500 via-rose-950 to-zinc-950',
+    glow: 'rgba(249, 115, 22, 0.4)',
+    border: 'border-orange-500/40',
+    badgeBg: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
+    iconBg: 'bg-orange-500/20 text-orange-400',
+    symbol: '🎞️',
+  },
+  naruto2: {
+    primary: '#f59e0b',
+    secondary: '#1c1102',
+    accent: '#fcd34d',
+    gradient: 'from-amber-500 via-orange-950 to-zinc-950',
+    glow: 'rgba(245, 158, 11, 0.4)',
+    border: 'border-amber-400/40',
+    badgeBg: 'bg-amber-500/20 text-amber-300 border-amber-400/40',
+    iconBg: 'bg-amber-500/20 text-amber-400',
+    symbol: '🦊',
+  },
+  gojo2: {
+    primary: '#a855f7',
+    secondary: '#180726',
+    accent: '#e9d5ff',
+    gradient: 'from-purple-600 via-indigo-900 to-cyan-950',
+    glow: 'rgba(168, 85, 247, 0.4)',
+    border: 'border-purple-400/40',
+    badgeBg: 'bg-purple-500/20 text-purple-200 border-purple-400/40',
+    iconBg: 'bg-purple-500/20 text-purple-300',
+    symbol: '🌌',
+  },
+  shadow: {
+    primary: '#64748b',
+    secondary: '#0f172a',
+    accent: '#e2e8f0',
+    gradient: 'from-slate-700 via-zinc-900 to-black',
+    glow: 'rgba(100, 116, 139, 0.4)',
+    border: 'border-slate-500/40',
+    badgeBg: 'bg-slate-500/20 text-slate-300 border-slate-500/40',
+    iconBg: 'bg-slate-500/20 text-slate-300',
+    symbol: '🗡️',
+  },
+  dragon: {
+    primary: '#dc2626',
+    secondary: '#250707',
+    accent: '#f87171',
+    gradient: 'from-red-700 via-orange-950 to-zinc-950',
+    glow: 'rgba(220, 38, 38, 0.4)',
+    border: 'border-red-500/40',
+    badgeBg: 'bg-red-500/20 text-red-300 border-red-500/40',
+    iconBg: 'bg-red-500/20 text-red-400',
+    symbol: '🐉',
+  },
+  golden: {
+    primary: '#eab308',
+    secondary: '#261c02',
+    accent: '#fef08a',
+    gradient: 'from-yellow-500 via-amber-800 to-zinc-950',
+    glow: 'rgba(234, 179, 8, 0.5)',
+    border: 'border-yellow-400/50',
+    badgeBg: 'bg-yellow-500/25 text-yellow-200 border-yellow-400/40',
+    iconBg: 'bg-yellow-500/25 text-yellow-300',
+    symbol: '🪙',
+  },
+  frozen2: {
+    primary: '#0284c7',
+    secondary: '#041d2f',
+    accent: '#7dd3fc',
+    gradient: 'from-sky-600 via-blue-950 to-zinc-950',
+    glow: 'rgba(2, 132, 199, 0.4)',
+    border: 'border-sky-500/40',
+    badgeBg: 'bg-sky-500/20 text-sky-200 border-sky-400/40',
+    iconBg: 'bg-sky-500/20 text-sky-300',
+    symbol: '🧊',
+  },
+  anime2: {
+    primary: '#8b5cf6',
+    secondary: '#1b0d2d',
+    accent: '#c4b5fd',
+    gradient: 'from-violet-600 via-fuchsia-950 to-zinc-950',
+    glow: 'rgba(139, 92, 246, 0.4)',
+    border: 'border-violet-500/40',
+    badgeBg: 'bg-violet-500/20 text-violet-300 border-violet-400/40',
+    iconBg: 'bg-violet-500/20 text-violet-300',
+    symbol: '🌸',
+  },
+  elite: {
+    primary: '#0ea5e9',
+    secondary: '#081f2c',
+    accent: '#38bdf8',
+    gradient: 'from-cyan-500 via-slate-900 to-zinc-950',
+    glow: 'rgba(14, 165, 233, 0.4)',
+    border: 'border-cyan-400/40',
+    badgeBg: 'bg-cyan-500/20 text-cyan-200 border-cyan-400/40',
+    iconBg: 'bg-cyan-500/20 text-cyan-300',
+    symbol: '💎',
+  },
+  finalBattle: {
+    primary: '#f43f5e',
+    secondary: '#250810',
+    accent: '#fb7185',
+    gradient: 'from-rose-600 via-purple-950 to-zinc-950',
+    glow: 'rgba(244, 63, 94, 0.5)',
+    border: 'border-rose-500/50',
+    badgeBg: 'bg-rose-500/25 text-rose-200 border-rose-400/40',
+    iconBg: 'bg-rose-500/25 text-rose-300',
+    symbol: '⚔️',
+  },
+};
+
+const EVENT_NAMES = [
+  { name: 'Naruto', themeKey: 'naruto', desc: 'Hidden Leaf ninja energy & shuriken aesthetic prompts' },
+  { name: 'Gojo', themeKey: 'gojo', desc: 'Limitless void & azure cursed technique portraits' },
+  { name: 'Anime', themeKey: 'anime', desc: 'Vibrant Japanese animation art style prompts' },
+  { name: 'Ghost', themeKey: 'ghost', desc: 'Spectral ethereal glow and haunting silhouettes' },
+  { name: 'Fire', themeKey: 'fire', desc: 'Blazing inferno and dramatic ember lighting' },
+  { name: 'Froze', themeKey: 'froze', desc: 'Sub-zero crystal and winter glacial aesthetics' },
+  { name: 'Proxy', themeKey: 'proxy', desc: 'Cyberpunk neon terminal and matrix hacking vibes' },
+  { name: 'Premium', themeKey: 'premium', desc: 'Luxury gold editorial and VIP portraits' },
+  { name: 'Lightning', themeKey: 'lightning', desc: 'High-voltage electric discharges & storms' },
+  { name: 'Thunder', themeKey: 'thunder', desc: 'Dark atmospheric tempest and thunderous drama' },
+  { name: 'Tamil', themeKey: 'tamil', desc: 'Mass Kollywood hero entries & festive South Indian warmth' },
+  { name: 'DNSN Anniversary', themeKey: 'dnsnAnniversary', desc: 'Celebratory golden jubilee & rainbow holographic art' },
+  { name: 'King', themeKey: 'king', desc: 'Regal thrones, velvet cloaks, and royal crowns' },
+  { name: 'Prompt', themeKey: 'prompt', desc: 'Hyper-detailed engineering & AI art formulas' },
+  { name: 'Kling', themeKey: 'kling', desc: 'Hyper-realistic motion film frames & neon cinematic' },
+  { name: 'Naruto - 2', themeKey: 'naruto2', desc: 'Sage of Six Paths golden chakra transformation' },
+  { name: 'Gojo - 2', themeKey: 'gojo2', desc: 'Domain expansion hollow purple apocalyptic visual' },
+  { name: 'Shadow', themeKey: 'shadow', desc: 'Nocturnal stealth assassins and dark silhouettes' },
+  { name: 'Dragon', themeKey: 'dragon', desc: 'Mythical draconian firebreathers and molten scales' },
+  { name: 'Golden', themeKey: 'golden', desc: '24K gilded pure gold sculpture & goddess luxury' },
+  { name: 'Frozen - 2', themeKey: 'frozen2', desc: 'Deep glacial Arctic kingdom and diamond ice' },
+  { name: 'Anime - 2', themeKey: 'anime2', desc: 'Neo-Tokyo future anime and holographic cherry blossoms' },
+  { name: 'Elite', themeKey: 'elite', desc: 'Diamond-tier avant-garde high fashion prompts' },
+  { name: 'Final Battle', themeKey: 'finalBattle', desc: 'Cosmic showdown of titans in space' },
+];
+
+// Generates the initial 24 events sequentially:
+// Event 1 starts in 2 days from now.
+// Each event lasts 6 days.
+// Total 24 * 6 = 144 days.
+export function generateInitialEvents(baseDate: Date = new Date()): EventItem[] {
+  const events: EventItem[] = [];
+  const DAY_MS = 24 * 60 * 60 * 1000;
+  
+  // First event starts 2 days from launch date
+  const firstEventStart = new Date(baseDate.getTime() + 2 * DAY_MS);
+
+  EVENT_NAMES.forEach((item, index) => {
+    const eventNumber = index + 1;
+    const startMs = firstEventStart.getTime() + (index * 6 * DAY_MS);
+    const endMs = startMs + (6 * DAY_MS);
+
+    const startDate = new Date(startMs).toISOString();
+    const endDate = new Date(endMs).toISOString();
+
+    const now = Date.now();
+    let status: 'upcoming' | 'active' | 'completed' = 'upcoming';
+    if (now >= startMs && now < endMs) {
+      status = 'active';
+    } else if (now >= endMs) {
+      status = 'completed';
+    }
+
+    const theme = EVENT_THEMES[item.themeKey] || EVENT_THEMES.naruto;
+
+    events.push({
+      id: `event-${eventNumber}`,
+      eventNumber,
+      name: item.name,
+      themeKey: item.themeKey,
+      description: item.desc,
+      startDate,
+      endDate,
+      status,
+      theme,
+      bannerUrl: `https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1200&q=80`,
+      promptIds: [],
+    });
+  });
+
+  return events;
+}

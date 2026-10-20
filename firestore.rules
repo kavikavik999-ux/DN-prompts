@@ -1,0 +1,118 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        (request.auth.token.email != null && (
+          request.auth.token.email.lower() == 'kavikavik999@gmail.com' ||
+          request.auth.token.email.lower() == 'mrdharanieditormrdharanieditor@gmail.com'
+        ))
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && (isAdmin() || request.auth.uid == userId);
+      allow create: if isOwner(userId) &&
+        request.resource.data.keys().hasAll(['email', 'displayName']) &&
+        request.resource.data.email is string &&
+        request.resource.data.displayName is string &&
+        request.resource.data.displayName.size() <= 100 &&
+        (!('role' in request.resource.data) || request.resource.data.role == 'user' || isAdmin());
+      allow update: if isOwner(userId) &&
+        (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['role']) || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // Prompts collection
+    match /prompts/{promptId} {
+      allow read: if true;
+
+      // Only authorized admins can create new prompts
+      allow create: if isAdmin() &&
+        isValidId(promptId) &&
+        request.resource.data.keys().hasAll(['title', 'promptText', 'category', 'imageUrl']) &&
+        request.resource.data.title is string && request.resource.data.title.size() <= 150 &&
+        request.resource.data.promptText is string && request.resource.data.promptText.size() <= 5000 &&
+        request.resource.data.imageUrl is string;
+
+      // Admins can update any field; users can update stats (views, uses, likes, saves, ratings)
+      allow update: if isAdmin() || (
+        isSignedIn() &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'viewsCount', 'usesCount', 'likesCount', 'savesCount', 'averageRating', 'ratingCount', 'updatedAt'
+        ])
+      );
+
+      // Only admins can delete prompts
+      allow delete: if isAdmin();
+    }
+
+    // Gaming-style Events
+    match /events/{eventId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Likes collection
+    match /likes/{likeId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() &&
+        isValidId(likeId) &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.promptId is string;
+      allow delete: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+    }
+
+    // Saves / Bookmarks collection
+    match /saves/{saveId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() &&
+        isValidId(saveId) &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.promptId is string;
+      allow delete: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+    }
+
+    // Ratings collection
+    match /ratings/{ratingId} {
+      allow read: if true;
+      allow create, update: if isSignedIn() &&
+        isValidId(ratingId) &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.promptId is string &&
+        request.resource.data.rating is number &&
+        request.resource.data.rating >= 1 &&
+        request.resource.data.rating <= 5;
+      allow delete: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+    }
+
+    // Admins allowlist collection
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+  }
+}

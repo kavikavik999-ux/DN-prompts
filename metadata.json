@@ -1,0 +1,8 @@
+{
+  "name": "DN Prompts - Premium AI Prompts & Inspiration",
+  "description": "Discover, copy, and craft cinematic AI image prompts inspired by Tamil cinema and modern visual art. By Dharani Selvan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
